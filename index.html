@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Валентинка</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #fff0f4, #ffe8eb);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .card-container {
+            position: relative;
+            width: 320px;
+            height: 220px;
+        }
+
+        /* Конверт */
+        .envelope {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #ff85a2;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background: #ff6b8b;
+            clip-path: polygon(0 0, 100% 0, 50% 40%);
+            transition: all 0.6s;
+        }
+
+        /* Штамп */
+        .stamp {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: #ff4d6d;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 28px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+            z-index: 3;
+        }
+
+        .stamp:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* Письмо */
+        .letter {
+            position: absolute;
+            top: 0;
+            width: 95%;
+            height: 700px;
+            background: #fff;
+            border-radius: 6px;
+            padding: 25px;
+            opacity: 0;
+            transform: translateY(40px) scale(0.9);
+            transition: all 0.6s 0.2s;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+
+        /* Анимации */
+        .envelope.open {
+            transform: translateY(-40px) scale(0.8);
+            opacity: 0;
+        }
+
+        .letter.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Текст письма */
+        .letter h1 {
+            font-family: 'Great Vibes', cursive;
+            color: #ff4d6d;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 36px;
+        }
+
+        .letter p {
+            color: #666;
+            line-height: 1.6;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 480px) {
+            .card-container {
+                width: 280px;
+                height: 190px;
+            }
+            
+            .letter {
+                height: 180px;
+                padding: 20px;
+            }
+            
+            .letter h1 {
+                font-size: 32px;
+            }
+            
+            .stamp {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="envelope">
+            <div class="stamp">❤️</div>
+        </div>
+        <div class="letter">
+            <h1>Эрике</h1>
+            <p>Посвещаеться дорогому мне человеку.Не получилось в жизни
+                 валентинку подарить так что на)) Хочу сказать что ты первая 
+                 кого по настоящему я полюбил, в начале было приятно общаться и
+                  пиздеть обо всём но потом ты начала по немногу пропадать а патом 
+                  ваще начала встречаться с кем-то, в тот момент как-то грустна
+                   была и мы не общались месяца 4. Ну кароче к чему это я (я сам не знаю) 
+                   хочу сказать что ты одна из самых дорогоих мне людей в моей жизни, 
+                 если бы не ты то хз ваще что было бы. Ты очень красивая, добрая ну и со своими приколами))
+                особоенно лезби до сих пор не панимаю это дикий рофл или внатуре АХАХХАХАХАХА. Ну и хочу
+                поблагадорить тебя за всё И на последок хочу спросить тебя. эт взаимна? (ну просто я без ответа сижу уже долга)
+            ИХХИХИХИХИ ПАКА</p>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.envelope').addEventListener('click', function() {
+            this.classList.add('open');
+            document.querySelector('.letter').classList.add('show');
+            
+            // Сброс анимации через 3 сек
+            setTimeout(() => {
+                this.classList.remove('open');
+                document.querySelector('.letter').classList.remove('show');
+            }, 20000);
+        });
+    </script>
+</body>
+</html>
